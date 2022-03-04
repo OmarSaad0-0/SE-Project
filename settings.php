@@ -15,11 +15,10 @@ while($row=$results->fetch_array(MYSQLI_ASSOC)){
 	echo "<input type=text name=email value=\"".$row["email"]."\"><br>";
     echo "<input type=text name=password value=\"".$row["password"]."\"><br>";
     echo "<input type=text name=number value=\"".$row["phone_Number"]."\"><br>";
-
+echo"ba7baaaaakkakakaka";
 }
 ?>
 <input type=submit>
-
 </form>
 </body>
 </html>
