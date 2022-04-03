@@ -54,16 +54,27 @@
 
         }
 
-        public function displayInfo($Id){
+        
 
-            $this->db->query('SELECT * FROM users where Id = :id');
-            $this->db->bind(':id', $Id);
-            $row = $this->db->single();
+     
 
-            return $row;
-            
+    public function updateUser($data){
 
-        }
+        $this->db->query('UPDATE users SET First_Name = :Fname , Last_Name = :Lname, Brand_Name = :Bname, User_Number = :usernum, User_Email = :Email  WHERE Id = :Id');
+        $this->db->bind(':Fname' , $data['Fnamee']);
+        $this->db->bind(':Lname' , $data['Lnamee']);
+        $this->db->bind(':Bname' , $data['Bnamee']);
+        $this->db->bind(':usernum' , $data['usernume']);
+        $this->db->bind(':Email' , $data['Emaile']);
+        $this->db->bind(':Id' , $data['Id']);
+
+        $this->db->execute();
+        
+      
+        
+
+        
+    }
 
 
         public function findUserByEmail($email) {
