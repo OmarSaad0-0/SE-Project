@@ -192,6 +192,16 @@ public function login() {
 
 public function createUserSession($user) {
     $_SESSION['Id'] = $user->Id;
+    $_SESSION['First_Name'] = $user->First_Name;
+    $_SESSION['Last_Name'] = $user->Last_Name;
+    $_SESSION['First_Name'] = $user->First_Name;
+    $_SESSION['Brand_Name'] = $user->Brand_Name;
+    $_SESSION['User_Email'] = $user->User_Email;
+    $_SESSION['User_Password'] = $user->User_Password;
+    $_SESSION['First_Name'] = $user->First_Name;
+    $_SESSION['User_Number'] = $user->User_Number;
+    
+
     
     
     header('location:' . URLROOT . '/pages/register');
@@ -200,24 +210,81 @@ public function createUserSession($user) {
 public function logout() {
     
     session_destroy();
-    unset($_SESSION['Id']);
+   
    
     header('location:' . URLROOT . '/users/register');
 }
 
+
+
+
+
 public function profile(){
-    $data = [
-        'Id' => $_SESSION['Id']
+
+   
+
+     $data = [
+
+        
+        'Id' => '',
+        'Fnamee' => '',
+        'Lnamee' => '',
+        'Bnamee' => '',
+        'Emaile' => '',
+        
+        'usernume' => '',
+        
+        
+        'FnameError' => '',
+        'LnameError' => '',
+        'BnameError' => '',
+        'emailError' => '',
+        'numberError' => ''
+        
+        
     ];
-                    
-$data= $this->userModel->displayInfo($data['Id']);
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        
+        
+       
+
+        $data = [
+
+        
+            'Id' => $_SESSION['Id'],
+            'Fnamee' => $_POST['Fname'],
+            'Lnamee' => $_POST['Lname'],
+            'Bnamee' => $_POST['Bname'],
+            'Emaile' => $_POST['Email'],
+            
+            'usernume' => $_POST['Number'],
+            
+            
+            'FnameError' => '',
+            'LnameError' => '',
+            'BnameError' => '',
+            'emailError' => '',
+            'numberError' => '',
+            
+            
+        ];
+
+       
+        
+        $this->userModel->updateUser($data);
+        $_SESSION['First_Name'] = $_POST['Fname'];
+        $_SESSION['Last_Name'] = $_POST['Lname'];
+        $_SESSION['Brand_Name'] = $_POST['Bname'];
+        $_SESSION['User_Number'] = $_POST['Number'];
+        $_SESSION['User_Email'] = $_POST['Email'];
+        
+        
+      
+    }
 
 
-$this->view('users/profile', $data);
-
-
-
-
+$this->view('users/profile',$data);
 
 
 }
