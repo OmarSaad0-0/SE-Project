@@ -25,9 +25,7 @@
 
     <nav class="navbar">
         <a href="#home">home</a>
-        <a href="#features">features</a>
-        <a href="#categories">categories</a>
-        <a href="#review">review</a>
+     
         <a href="#review">about us</a>
 
         <?php if(!isset($_SESSION['Id'])) :?>
