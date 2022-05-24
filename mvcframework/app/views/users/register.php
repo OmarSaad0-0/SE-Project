@@ -38,6 +38,7 @@
                 class="login-form"
                 >
                 <h2>Register</h2>
+
             <input type="Fname" placeholder="Firstname" name ="Fname" class="box" ><br>
             <div class="invalidFeedback">
                 <?php echo $data['FnameError']; ?>

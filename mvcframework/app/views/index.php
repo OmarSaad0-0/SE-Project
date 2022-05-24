@@ -12,19 +12,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- custom css file link  -->
+
     <link rel="stylesheet" href="http://localhost/MVCFRAMEWORK/public/css/style.css">
 
 </head>
 <body>
   <?php  
+
 require APPROOT . '/views/includes/navigation.php';
 ?>
 <section class="home" id="home">
 
     <div class="content">
         <h3>Clothes Mean <span>Nothing</span> Until Someone Lives in Them</h3>
+
         
         <a href="<?php echo URLROOT; ?>/Pages/Select" class="btn">Get Started</a>
+
     </div>
 
 </section>
@@ -40,6 +44,7 @@ require APPROOT . '/views/includes/navigation.php';
     <div class="box-container">
 
         <div class="box">
+
             <img src="<?php echo URLROOT; ?>/public/img/Hoodies.jpeg" alt="">
             <h3>Make your own design</h3>
             
@@ -55,6 +60,7 @@ require APPROOT . '/views/includes/navigation.php';
             <img src="<?php echo URLROOT; ?>/public/img/EasyP.jpeg" alt="">
             <h3>easy payments</h3>
             
+
         </div>
 
     </div>
@@ -62,6 +68,7 @@ require APPROOT . '/views/includes/navigation.php';
 </section>
 
 <!-- features section ends -->
+
 <!-- products section ends -->
 
 <!-- categories section starts  -->
@@ -139,10 +146,13 @@ require APPROOT . '/views/includes/navigation.php';
 </section>
 
 
+
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 <!-- custom js file link  -->
 <script src="<?php echo URLROOT ?>/public/Js/script.js"></script>
+
+
 <?php  
 require APPROOT . '/views/includes/footer.php';
 ?>

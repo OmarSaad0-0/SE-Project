@@ -86,6 +86,7 @@ class Users extends Controller {
                 $data['emailError'] = 'Please enter an email address.';
             } elseif (!filter_var($data['Email'], FILTER_VALIDATE_EMAIL)) {
                 $data['emailError'] = 'Please The Correct Email Format.';
+
             } 
                 //Check if email exists.
               elseif ($this->userModel->findUserByEmail($data['Email'])) 
@@ -93,6 +94,7 @@ class Users extends Controller {
                 $data['emailError'] = 'Email Is Already Taken.';
                 }
             
+
 
            // Validate password on length, numeric values,
             if(empty($data['Password'])){
@@ -280,7 +282,6 @@ public function profile(){
         $_SESSION['User_Number'] = $_POST['Number'];
         $_SESSION['User_Email'] = $_POST['Email'];
 
-        
       
     }
 
@@ -289,6 +290,7 @@ $this->view('users/profile',$data);
 
 
 }
+
 
 public function delete()
 {
@@ -312,3 +314,4 @@ $this->view('users/profile',$data);
 }
 
 }
+

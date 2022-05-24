@@ -24,7 +24,9 @@
     <a href="#" class="logo"> <i class="fas fa-shopping-bag"></i> Namera </a>
 
     <nav class="navbar">
+
         <a href="<?php echo URLROOT; ?>">home</a>
+
      
         <a href="#review">about us</a>
 
@@ -36,7 +38,9 @@
 <?php if(isset($_SESSION['Id'])) :?>
         <a href="<?php echo URLROOT; ?>/users/logout">Logout</a>
         <a href="<?php echo URLROOT; ?>/users/profile">My Profile</a>
+
         <a href="<?php echo URLROOT; ?>/Pages/Select">Get Started!</a>
+
 
 
         <?php endif; ?>
@@ -44,7 +48,9 @@
     </nav>
   
 
+
     
+
 
     <form action="" class="search-form">
         <input type="search" id="search-box" placeholder="search here...">
@@ -98,4 +104,6 @@
 
 <!-- custom js file link  -->
 <script src="http://localhost/MVCFRAMEWORK/public/Js/script.js"></script>
+
 </body>
+
