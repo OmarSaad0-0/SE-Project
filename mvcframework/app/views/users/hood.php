@@ -1,3 +1,7 @@
+<?php  
+require APPROOT . '/views/includes/navigation.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,50 +21,56 @@
 
  </head>
 
- <section class="Embroidery" id="Embroidery">
-    <h1 class="heading"> <span>Embroidery</span> </h1>
+
+<body>
+    <br><br><br><br>
+<section class="Hood" id="Hood">
+    <h1 class="heading"> <span>Hood</span> </h1>
     
     <div class="box-container">
 
         <div class="box">
-            <img src="<?php echo URLROOT; ?>/public/img/in.jpeg" alt="">
-            <h3>In</h3>
-            <label><input type="checkbox" class="checke" /></label>
+            <img src="<?php echo URLROOT; ?>/public/img/1.jpeg" alt="">
+            <h3>1</h3>
+            <label><input type="checkbox" class="checkh" /></label>
               
             
         </div>
 
 
         <div class="box">
-
-            <img src="<?php echo URLROOT; ?>/public/img/out .jpeg" alt="">
-
-            <h3>Out</h3>
-            <label><input type="checkbox" class="checke" /> </label>
+            <img src="<?php echo URLROOT; ?>/public/img/2.jpeg" alt="">
+            <h3>2</h3>
+            <label><input type="checkbox" class="checkh" /> </label>
             
         </div>
    
      <script>
-     var checks = document.querySelectorAll(".checke");
-     var max5 = 1;
+     var checks = document.querySelectorAll(".checkh");
+     var max6 = 1;
      for (var i = 0; i < checks.length; i++)
       checks[i].onclick = selectiveCheck;
       function selectiveCheck (event) {
-     var checkedChecks = document.querySelectorAll(".checke:checked");
-     if (checkedChecks.length >= max5 + 1)
+     var checkedChecks = document.querySelectorAll(".checkh:checked");
+     if (checkedChecks.length >= max6 + 1)
        return false;
      }
-
-
-     
       </script>
+
+
     </div>
 
     
+      
 
-    <form method="post" action = "<?php echo URLROOT; ?>/Pages/hood">    
-        <input type="submit" value="next" class="btn" >
- </form>
+ <input  onclick="myFunction()" type="submit" value="finish" class="btn" >
+
+ <script>
+ function myFunction() {
+   alert("Thank you for choosing namera! We will contact you soon");
+ }
+ </script>
 
    </section>
 
+   </body>

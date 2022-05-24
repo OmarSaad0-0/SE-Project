@@ -86,12 +86,15 @@ class Users extends Controller {
                 $data['emailError'] = 'Please enter an email address.';
             } elseif (!filter_var($data['Email'], FILTER_VALIDATE_EMAIL)) {
                 $data['emailError'] = 'Please The Correct Email Format.';
-            } else {
+
+            } 
                 //Check if email exists.
-                if ($this->userModel->findUserByEmail($data['Email'])) {
+              elseif ($this->userModel->findUserByEmail($data['Email'])) 
+                {
                 $data['emailError'] = 'Email Is Already Taken.';
                 }
-            }
+            
+
 
            // Validate password on length, numeric values,
             if(empty($data['Password'])){
@@ -278,8 +281,7 @@ public function profile(){
         $_SESSION['Brand_Name'] = $_POST['Bname'];
         $_SESSION['User_Number'] = $_POST['Number'];
         $_SESSION['User_Email'] = $_POST['Email'];
-        
-        
+
       
     }
 
@@ -290,4 +292,26 @@ $this->view('users/profile',$data);
 }
 
 
+public function delete()
+{
+    
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    
+    $this->userModel->delete($_SESSION['Id']);
+ 
+
+    session_destroy();
+   
+   
+    header('location:' . URLROOT . '/users/register');
+      
+    
+
+
 }
+$this->view('users/profile',$data);
+}
+
+}
+

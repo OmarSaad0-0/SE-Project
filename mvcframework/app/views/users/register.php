@@ -38,45 +38,46 @@
                 class="login-form"
                 >
                 <h2>Register</h2>
-            <input type="Fname" placeholder="Firstname" name ="Fname" class="box"><br>
-            <span class="invalidFeedback">
+
+            <input type="Fname" placeholder="Firstname" name ="Fname" class="box" ><br>
+            <div class="invalidFeedback">
                 <?php echo $data['FnameError']; ?>
-            </span>
+</div>
 
 
-            <input type="Lname" placeholder="last name" name= "Lname"class="box"><br>
-            <span class="invalidFeedback">
+            <input type="Lname" placeholder="last name" name= "Lname"class="box" ><br>
+            <div class="invalidFeedback">
                 <?php echo $data['LnameError']; ?>
+                <div>
 
 
 
-
-                <input type="Company" placeholder="your company name" name="Bname" class="box"><br>
-            <span class="invalidFeedback">
+                <input type="Company" placeholder="your company name" name="Bname" class="box" ><br>
+            <div class="invalidFeedback">
                 <?php echo $data['BnameError']; ?>
+</div>
 
 
-
-                <input type="Phone" placeholder="Phonenumber" name="Number" class="box"><br>
-            <span class="invalidFeedback">
+                <input type="int" placeholder="Phonenumber" name="Number" class="box" ><br>
+            <div class="invalidFeedback">
                 <?php echo $data['numberError']; ?>
+</div>
 
-
-                <input type="Email" placeholder="your email" name= "Email" class="box"><br>
-            <span class="invalidFeedback">
+                <input type="text" placeholder="your email" name= "Email" class="box" ><br>
+            <div class="invalidFeedback">
                 <?php echo $data['emailError']; ?>
-            </span>
+            </div>
 
             <input type="password" placeholder="your password" name= "Password"  class="box"><br>
-            <span class="invalidFeedback">
+            <div class="invalidFeedback">
                 <?php echo $data['passwordError']; ?>
-            </span>
+            </div>
 
-            <input type="password" placeholder="confirm password" name= "Cpassword"  class="box"><br>
-            <span class="invalidFeedback">
+            <input type="password" placeholder="confirm password" name= "Cpassword"  class="box" ><br>
+            <div class="invalidFeedback">
                 <?php echo $data['passwordError'];
                 echo $data['confirmPasswordError'] ?>
-            </span>
+            </div>
 
 
             <p>Forget your password <a href="#">click here</a></p>

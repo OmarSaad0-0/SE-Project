@@ -76,6 +76,21 @@
         
     }
 
+    public function findUserById($id) {
+        //Prepared statement
+        $this->db->query('SELECT * FROM users WHERE Id = :id');
+
+        //Email param will be binded with the email variable
+        $this->db->bind(':id', $id);
+
+        //Check if email is already registered
+        if($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }  
+
 
         public function findUserByEmail($email) {
             //Prepared statement
@@ -83,7 +98,9 @@
     
             //Email param will be binded with the email variable
             $this->db->bind(':email', $email);
-    
+
+           $this->db->single();
+
             //Check if email is already registered
             if($this->db->rowCount() > 0) {
                 return true;
@@ -91,4 +108,18 @@
                 return false;
             }
         }    
+
+
+        public function delete($id)
+        {
+           
+            $this->db->query('DELETE FROM users WHERE Id = :id');
+            $this->db->bind('id',$id);
+            $this->db->execute();
+            
+
+
+        }
+
+
     }

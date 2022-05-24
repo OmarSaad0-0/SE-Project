@@ -1,5 +1,6 @@
 
 
+
 document.querySelector('#search-btn').onclick = () =>{
     searchForm.classList.toggle('active');
     shoppingCart.classList.remove('active');
@@ -82,3 +83,4 @@ var swiper = new Swiper(".review-slider", {
       },
     },
 });
+

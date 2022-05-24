@@ -24,7 +24,9 @@
     <a href="#" class="logo"> <i class="fas fa-shopping-bag"></i> Namera </a>
 
     <nav class="navbar">
-        <a href="#home">home</a>
+
+        <a href="<?php echo URLROOT; ?>">home</a>
+
      
         <a href="#review">about us</a>
 
@@ -37,17 +39,18 @@
         <a href="<?php echo URLROOT; ?>/users/logout">Logout</a>
         <a href="<?php echo URLROOT; ?>/users/profile">My Profile</a>
 
+        <a href="<?php echo URLROOT; ?>/Pages/Select">Get Started!</a>
+
+
+
         <?php endif; ?>
         
     </nav>
   
 
-    <div class="icons">
-        <div class="fas fa-bars" id="menu-btn"></div>
-        <div class="fas fa-search" id="search-btn"></div>
-        <div class="fas fa-shopping-cart" id="cart-btn"></div>
-        <div class="fas fa-user" id="login-btn"></div>
-    </div>
+
+    
+
 
     <form action="" class="search-form">
         <input type="search" id="search-box" placeholder="search here...">
@@ -101,4 +104,6 @@
 
 <!-- custom js file link  -->
 <script src="http://localhost/MVCFRAMEWORK/public/Js/script.js"></script>
+
 </body>
+
