@@ -75,6 +75,17 @@
 
         
     }
+    public function UpdatePasswordinDB($data)
+    {
+      $this->db->query('UPDATE users SET User_Password =:Pass  WHERE Id=:Id');
+      $this->db->bind(":Pass",$data['Password']);
+      $this->db->bind(":Id",$data['Id']);
+      $this->db->execute();
+
+
+
+    }
+    
 
     public function findUserById($id) {
         //Prepared statement
@@ -98,9 +109,7 @@
     
             //Email param will be binded with the email variable
             $this->db->bind(':email', $email);
-
            $this->db->single();
-
             //Check if email is already registered
             if($this->db->rowCount() > 0) {
                 return true;
@@ -108,7 +117,6 @@
                 return false;
             }
         }    
-
 
         public function delete($id)
         {
@@ -120,6 +128,5 @@
 
 
         }
-
 
     }
