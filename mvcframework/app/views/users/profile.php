@@ -1,4 +1,7 @@
 <html lang="en">
+    <br><br><br>
+    
+<a href="<?php echo URLROOT; ?>/users/UpdatePassword">Reset Password Here</a>
     
 <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/profile.css">
 <?php  
@@ -82,6 +85,10 @@ require APPROOT . '/views/includes/navigation.php';
 
 
 <!-- Delete Confirmation Modal -->
+
+
+
+
 <button onclick="document.getElementById('deleteModal').style.display='block'">Delete</button>
 
 <div id="deleteModal" class="modal">
@@ -120,5 +127,3 @@ window.onclick = function(event) {
         </div>
         </div>
 
-
-        
