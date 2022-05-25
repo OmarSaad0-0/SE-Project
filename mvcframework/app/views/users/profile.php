@@ -28,32 +28,24 @@ require APPROOT . '/views/includes/navigation.php';
             <div class="card-body">
                 <div class="row gutters">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-
                         <h3 class="mb-50 text-default">Personal Details</h6>
-
                     </div>
                     <form action="<?php echo URLROOT;?>/users/profile" method='POST'> 
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-
                             <label for="firstName" class="col-form-label">First Name</label>
-
                             <input type="text" class="form-control" id="firstName" name="Fname" value="<?php echo $_SESSION['First_Name'] ;?>">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-
                             <label for="lastname" class="col-form-label">Last Name</label>
-
                             <input type="text" class="form-control"  id="lastname" name="Lname" value="<?php echo $_SESSION['Last_Name']; ?>">
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-
                             <label for="phone" class="col-form-label">Phone</label>
-
                             <input type="text" class="form-control" id="phone" name="Number" value="<?php echo $_SESSION['User_Number']; ?>">
                         </div>
                     </div>
@@ -65,7 +57,6 @@ require APPROOT . '/views/includes/navigation.php';
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
-
                             <label for="companyName" class="col-form-label">Company Name</label>
                             <input type="name" class="form-control" id="companyName" name="Bname" value="<?php echo $_SESSION['Brand_Name']; ?>">
                         </div>
@@ -73,7 +64,6 @@ require APPROOT . '/views/includes/navigation.php';
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6  col-12">
                         <div class="form-group">
                             <label for="Email" class="col-form-label">Email</label>
-
                             <input type="email" class="form-control" id="Email" name="Email" value="<?php echo $_SESSION['User_Email']; ?>">
                         </div>
                     </div>
@@ -82,7 +72,6 @@ require APPROOT . '/views/includes/navigation.php';
                     </div>
                 </div>
                 <div class="row gutters">
-
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="text-right">
                             
@@ -90,18 +79,46 @@ require APPROOT . '/views/includes/navigation.php';
 
 
                         </form>
-<form action = "<?php echo URLROOT;?>/users/delete" method = 'POST' >
-<button type="submit" id="submit" name="Delete" class="btn btn-primary">Delete</button>
 
-</form>
 
+<!-- Delete Confirmation Modal -->
+<button onclick="document.getElementById('deleteModal').style.display='block'">Delete</button>
+
+<div id="deleteModal" class="modal">
+  <span onclick="document.getElementById('deleteModal').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" action="<?php echo URLROOT;?>/users/delete" method = 'POST'>
+    <div class="container">
+      <h1>Delete Account</h1>
+      <p>Are you sure you want to delete your account?</p>
+
+      <div class="clearfix">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="submit" class="deletebtn" id = 'delsubmit' >Delete</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+// Get the modal
+var modal = document.getElementById('deleteModal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
                         </div>
                     </div>
                 </div>
             </div>
 
+           
         
         </div>
         </div>
         </div>
 
+
+        
