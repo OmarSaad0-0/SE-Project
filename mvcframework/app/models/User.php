@@ -60,7 +60,15 @@
 
         }
 
-        
+    public function ViewUsers()
+    {
+    
+
+        $this->db->query("SELECT * FROM users");
+        $result = $this->db->resultSet();
+        return $result;
+      
+    }
 
      
 

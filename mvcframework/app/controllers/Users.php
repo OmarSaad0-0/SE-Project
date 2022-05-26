@@ -222,6 +222,17 @@ public function logout() {
    
    
     header('location:' . URLROOT . '/users/login');
+
+}
+
+
+public function admin_panel(){
+    
+$data=$this->userModel->ViewUsers();
+
+
+    $this->view('users/admin_panel',$data);
+
 }
 
 
@@ -234,6 +245,7 @@ public function admin_panel(){
 
     $this->view('users/admin_panel',$data);
 }
+
 
 
 
