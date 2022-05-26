@@ -150,6 +150,7 @@ public function login() {
             'Password' => trim($_POST['Pass']),
             'emailError' => '',
             'passwordError' => '',
+            'User_Type' => $_SESSION['User_Type']
         ];
         //Validate username
         if (empty($data['Email'])) {
@@ -187,6 +188,7 @@ public function login() {
         ];
     }
     
+    
     $this->view('users/login', $data);
     
 }
@@ -201,11 +203,17 @@ public function createUserSession($user) {
     $_SESSION['User_Password'] = $user->User_Password;
     $_SESSION['First_Name'] = $user->First_Name;
     $_SESSION['User_Number'] = $user->User_Number;
+    $_SESSION['User_Type'] = $user->User_Type;
     
 
     
-    
-    header('location:' . URLROOT . '/pages/register');
+    if($_SESSION['User_Type'] == 'Admin'){
+    header('location:' . URLROOT . '/users/admin_panel');
+    }
+    else{
+
+        header('location:' . URLROOT );
+    }
 }
 
 public function logout() {
@@ -215,6 +223,18 @@ public function logout() {
    
     header('location:' . URLROOT . '/users/login');
 }
+
+
+public function admin_panel(){
+    
+    $data = [
+        'userType' => $_SESSION['User_Type']
+        
+    ];
+
+    $this->view('users/admin_panel',$data);
+}
+
 
 
 
