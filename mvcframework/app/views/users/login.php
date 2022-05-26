@@ -32,14 +32,14 @@
         <form action="<?php echo URLROOT; ?>/users/login" id="register-form" method ="POST" class="login-form">
         <h2>Login <h2>  
             <div class ="form-group">
-        <input type="text" placeholder="Email" name="email" class="form-control" >
+      Email:   <input type="text" placeholder="Email" name="email" class="form-control" >
     
             <span class="invalidFeedback">
                 <?php echo $data['emailError']; ?>
             </span>
             </div>
             <div class ="form-control">
-            <input type="password" placeholder="Password" name="Pass" class="form-control" >
+         Password:    <input type="password" placeholder="Password" name="Pass" class="form-control" >
             <span class="invalidFeedback">
                 <?php echo $data['passwordError']; ?>
             </span>

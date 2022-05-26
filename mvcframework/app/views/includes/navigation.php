@@ -16,7 +16,7 @@
 
 </head>
 <body>
-    session_start();
+    
 <!-- header section starts  -->
 
 <header class="header">
@@ -32,9 +32,15 @@
 
         <?php if(!isset($_SESSION['Id'])) :?>
 
-<a href="http://localhost/MVCFRAMEWORK/users/login">Login </a>
-<a href="http://localhost/MVCFRAMEWORK/users/register">Register </a>
+<a href="http://localhost/mvcframework/users/login">Login </a>
+<a href="http://localhost/mvcframework/users/register">Register </a>
 <?php endif; ?>
+
+<?php if(isset($_SESSION['User_Type'] ) && $_SESSION['User_Type'] == 'Admin') :?>
+    <a href="<?php echo URLROOT; ?>/users/admin_panel">Admin Panel</a>
+<?php endif; ?>
+
+
 <?php if(isset($_SESSION['Id'])) :?>
         <a href="<?php echo URLROOT; ?>/users/logout">Logout</a>
         <a href="<?php echo URLROOT; ?>/users/profile">My Profile</a>
