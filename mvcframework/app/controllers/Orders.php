@@ -17,7 +17,6 @@ class Orders extends Controller
 
 public function Enter()
 {
-
     $data = [
             
         'Base' => '',
@@ -26,7 +25,8 @@ public function Enter()
         'Printing' =>'',
         'Quantity' => '',
         'Info' => '',
-        'Time' => ''
+        'Time' => '',
+        'Pr' => $this->orderModel->SelectPrint()
         
     ];
 
@@ -34,6 +34,8 @@ public function Enter()
     // Process form
     // Sanitize POST data
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+
 
     $data = [
             
@@ -44,7 +46,7 @@ public function Enter()
         'Quantity' => $_POST['Quantity'],
         'Info' => $_POST['Info'],
         'Time' => $_POST['Time'],
-        'PrintingTypes' =>$this->orderModel->SelectPrint()
+        'Pr' => $this->orderModel->SelectPrint()
     ];
 
     $_SESSION['Base']=$data['Base'];
@@ -59,10 +61,10 @@ public function Enter()
 
   
 
-$this->view('orders/Enter',$data);
-
 }
 
+
+$this->view('orders/Enter',$data);
 
 }
 
