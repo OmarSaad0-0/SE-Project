@@ -86,7 +86,6 @@ class Users extends Controller {
                 $data['emailError'] = 'Please enter an email address.';
             } elseif (!filter_var($data['Email'], FILTER_VALIDATE_EMAIL)) {
                 $data['emailError'] = 'Please The Correct Email Format.';
-
             } 
                 //Check if email exists.
               elseif ($this->userModel->findUserByEmail($data['Email'])) 
@@ -94,7 +93,6 @@ class Users extends Controller {
                 $data['emailError'] = 'Email Is Already Taken.';
                 }
             
-
 
            // Validate password on length, numeric values,
             if(empty($data['Password'])){
@@ -152,6 +150,7 @@ public function login() {
             'Password' => trim($_POST['Pass']),
             'emailError' => '',
             'passwordError' => '',
+            'User_Type' => $_SESSION['User_Type']
         ];
         //Validate username
         if (empty($data['Email'])) {
@@ -164,7 +163,7 @@ public function login() {
         }
 
         //Check if all errors are empty
-        if (empty($data['emailError']) && empty($data['emailPassword']))
+        if (empty($data['emailError']) && empty($data['passwordError']))
          {    
              
             $loggedInUser = $this->userModel->login($data['Email'], $data['Password']);
@@ -189,6 +188,7 @@ public function login() {
         ];
     }
     
+    
     $this->view('users/login', $data);
     
 }
@@ -203,11 +203,17 @@ public function createUserSession($user) {
     $_SESSION['User_Password'] = $user->User_Password;
     $_SESSION['First_Name'] = $user->First_Name;
     $_SESSION['User_Number'] = $user->User_Number;
+    $_SESSION['User_Type'] = $user->User_Type;
     
 
     
-    
-    header('location:' . URLROOT . '/pages/register');
+    if($_SESSION['User_Type'] == 'Admin'){
+    header('location:' . URLROOT . '/users/admin_panel');
+    }
+    else{
+
+        header('location:' . URLROOT );
+    }
 }
 
 public function logout() {
@@ -215,8 +221,18 @@ public function logout() {
     session_destroy();
    
    
-    header('location:' . URLROOT . '/users/register');
+    header('location:' . URLROOT . '/users/login');
 }
+
+
+public function admin_panel(){
+    
+$data=$this->userModel->ViewUsers();
+
+
+    $this->view('users/admin_panel',$data);
+}
+
 
 
 
@@ -282,6 +298,7 @@ public function profile(){
         $_SESSION['User_Number'] = $_POST['Number'];
         $_SESSION['User_Email'] = $_POST['Email'];
 
+        
       
     }
 
@@ -290,6 +307,82 @@ $this->view('users/profile',$data);
 
 
 }
+
+public function UpdatePassword(){
+
+$data =[
+ 'title' =>'changepassword' ,
+ 'Id' => '',
+ 'Password'=> '',
+ 'Confirmpass' => '',
+ 'passwordError' => '',
+ 'confirmPasswordError' => ''
+
+
+];
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING); 
+    $data =[
+        'title' =>'changepassword' ,
+        'Id' => $_SESSION['Id'],
+        'Password'=> $_POST['Password'],
+        'Confirmpass' =>$_POST['Confirmpass'],
+        'passwordError' => '',
+        'confirmPasswordError' => ''
+
+
+       ];
+
+       
+
+       if (empty($data['Password'])) {
+        $data['passwordError'] = 'Please Enter Your Password.';
+    }
+
+    if (empty($data['Confirmpass'])) {
+        $data['confirmPasswordError'] = 'Please Enter Your confirm Password.';
+    }
+    if (($data['Confirmpass'])!=($data['Password']) ) {
+        $data['confirmPasswordError'] = 'Unmatched Passwords.';
+    }
+
+
+    if (empty($data['passwordError']) && empty($data['confirmPasswordError']))
+    {    
+        $data['Password'] = password_hash($data['Password'], PASSWORD_DEFAULT);
+        $this->userModel->UpdatePasswordinDB($data);
+        echo '<script>alert("Your password has changed successfully")</script>';
+        sleep(2);
+        header('location: ' . URLROOT . '/users/logout');
+       
+    }
+    
+    
+}
+else{
+    $data = [
+        
+        'Id' => '',
+        'Password'=> '',
+        'Confirmpass' => '',
+        'passwordError' => '',
+        'confirmPasswordError' => ''
+    ];
+}
+
+$this->view('users/UpdatePassword', $data);
+
+}
+
+
+
+
+
+
+
+
+    
+
 
 
 public function delete()
@@ -314,4 +407,3 @@ $this->view('users/profile',$data);
 }
 
 }
-
