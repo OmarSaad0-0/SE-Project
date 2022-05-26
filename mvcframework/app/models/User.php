@@ -8,13 +8,19 @@
 
         public function register($data)
         {
-        $this->db->query('INSERT INTO users (First_Name, Last_Name, Brand_Name, User_Email, User_Password, User_Number) VALUES (:Fname, :Lname, :Bname, :Uemail, :Upassword, :Unumber)');
+
+
+
+        $this->db->query('INSERT INTO users (First_Name, Last_Name, Brand_Name, User_Email, User_Password, User_Number, User_Type) 
+        VALUES (:Fname, :Lname, :Bname, :Uemail, :Upassword, :Unumber, :Utype)');
         $this->db->bind(':Fname',$data['Fname']);
         $this->db->bind(':Lname',$data['Lname']);
         $this->db->bind(':Bname',$data['Bname']);
         $this->db->bind(':Uemail',$data['Email']);
         $this->db->bind(':Upassword',$data['Password']);
         $this->db->bind(':Unumber',$data['Number']);
+        $this->db->bind(':Utype','User');
+       
 
         if ($this->db->execute()) {
             return true;
