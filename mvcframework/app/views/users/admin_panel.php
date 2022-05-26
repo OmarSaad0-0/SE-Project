@@ -1,3 +1,4 @@
+
 <?php
  echo "<table border=1 >
  <th >id</th>
@@ -13,3 +14,5 @@ foreach($data as $user){
 echo"</table>";
 
    
+
+
