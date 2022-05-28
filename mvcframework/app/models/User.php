@@ -59,7 +59,11 @@
 
 
         }
-
+    public function ShowOrders(){
+        $this->db->query("SELECT orders.Id, users.Brand_Name AS Ordered_By,orders.base_product,orders.Fabric,orders.Colour,printing.Type AS printing_Type ,orders.Quantity,orders.additionalInfo,orders.deliveryTime,orders.Order_date FROM orders INNER JOIN users ON Orders.Ordered_By=users.Id INNER JOIN printing ON orders.Printing=printing.Print_Id");
+        $result = $this->db->resultSet();
+        return $result;
+    }
     public function ViewUsers()
     {
     
