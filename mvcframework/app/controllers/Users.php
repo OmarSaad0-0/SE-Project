@@ -1,5 +1,7 @@
 <?php
 class Users extends Controller {
+
+    
     public function __construct() {
         $this->userModel = $this->model('User');
     }
@@ -208,7 +210,7 @@ public function createUserSession($user) {
 
     
     if($_SESSION['User_Type'] == 'Admin'){
-    header('location:' . URLROOT . '/users/admin_panel');
+    header('location:' . URLROOT . '/users/admin_panel_landing');
     }
     else{
 
@@ -222,25 +224,111 @@ public function logout() {
    
    
     header('location:' . URLROOT . '/users/login');
+
 }
 
 
+public function admin_panel_users(){
+    
+        $data=$this->userModel->ViewUsers();
 
-public function admin_panel(){
-    $data=[
-        "title"=>"admin"
+
+    $this->view('users/admin_panel_users',$data);
+
+}
+
+public function admin_panel_landing(){
+    
+    
+        $data = [ 'Title' => 'Admin Dashboard'
+    ];
+    
+        $this->view('users/admin_panel_landing',$data);
+    
+    }
+public function admin_panel_admins(){
+    
+    
+        $data=$this->userModel->ViewAdmins();
+        
+        
+        $this->view('users/admin_panel_admins',$data);
+        
+        }    
+
+public function admin_panel_delete_admins()
+{
+  
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+       
+     
+
+        
+        
+        if($this->userModel->DeleteAdmin($_GET['id']))
+        {
+
+            header("Location: " . URLROOT. "/users/admin_panel_admins");
+
+        }
+        else{
+        die("Manga");
+        }
+          
+    }
+    
+    $this->view('users/admin_panel_admins');
+}
+
+public function admin_panel_add_adminform(){
+
+    $data = [
+            
+        'Fname' => '',
+        'Lname' => '',
+        'Email' => '',
+        'Password' => '',
+        'Number' => '',
+        'FnameError' => '',
+        'LnameError' => '',
+        'emailError' => '',
+        'numberError' => '',
+        'passwordError' => '',
     ];
 
-    $this->view('users/admin_panel',$data);
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    $data = [
+            
+        'Fname' => $_POST['Fname'],
+        'Lname' => $_POST['Lname'],
+        'Email' => $_POST['Email'],
+        'Password' => $_POST['Password'],
+        'Number' => '',
+        'FnameError' => '',
+        'LnameError' => '',
+        'emailError' => '',
+        'numberError' => '',
+        'passwordError' => '',
+    ];
+
+
+    $data['Password'] = password_hash($data['Password'], PASSWORD_DEFAULT);
+
+    if($this->userModel->AddAdmin($data)){
+        header("Location: " . URLROOT. "/users/admin_panel_admins");
+
+    }else{
+        die("Manga");
+
+        }
+    }
+    $this->view('users/admin_panel_add_adminform');
 }
-public function ViewOrders(){
-    $data=$this->userModel->ShowOrders();
-    $this->view('users/ViewOrders',$data);
-}
-public function ViewUsers(){
-    $data=$this->userModel->ViewUsers();
-    $this->view('users/ViewUsers',$data);
-}
+
+
+
 
 
 
