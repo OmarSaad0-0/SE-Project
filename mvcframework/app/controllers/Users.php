@@ -222,32 +222,24 @@ public function logout() {
    
    
     header('location:' . URLROOT . '/users/login');
-
 }
 
 
 public function admin_panel(){
-    
-$data=$this->userModel->ViewUsers();
-
-
-    $this->view('users/admin_panel',$data);
-
-}
-
-
-public function admin_panel(){
-    
-    $data = [
-        'userType' => $_SESSION['User_Type']
-        
+    $data=[
+        "title"=>"admin"
     ];
 
     $this->view('users/admin_panel',$data);
 }
-
-
-
+public function ViewOrders(){
+    $data=$this->userModel->ShowOrders();
+    $this->view('users/ViewOrders',$data);
+}
+public function ViewUsers(){
+    $data=$this->userModel->ViewUsers();
+    $this->view('users/ViewUsers',$data);
+}
 
 
 
