@@ -225,6 +225,7 @@ public function logout() {
 }
 
 
+
 public function admin_panel(){
     $data=[
         "title"=>"admin"
@@ -240,6 +241,7 @@ public function ViewUsers(){
     $data=$this->userModel->ViewUsers();
     $this->view('users/ViewUsers',$data);
 }
+
 
 
 
