@@ -8,13 +8,17 @@
 
         public function register($data)
         {
-        $this->db->query('INSERT INTO users (First_Name, Last_Name, Brand_Name, User_Email, User_Password, User_Number) VALUES (:Fname, :Lname, :Bname, :Uemail, :Upassword, :Unumber)');
+
+        $this->db->query('INSERT INTO users (First_Name, Last_Name, Brand_Name, User_Email, User_Password, User_Number, User_Type) 
+        VALUES (:Fname, :Lname, :Bname, :Uemail, :Upassword, :Unumber, :Utype)');
         $this->db->bind(':Fname',$data['Fname']);
         $this->db->bind(':Lname',$data['Lname']);
         $this->db->bind(':Bname',$data['Bname']);
         $this->db->bind(':Uemail',$data['Email']);
         $this->db->bind(':Upassword',$data['Password']);
         $this->db->bind(':Unumber',$data['Number']);
+        $this->db->bind(':Utype','User');
+       
 
         if ($this->db->execute()) {
             return true;
@@ -45,8 +49,9 @@
         }
 
         public function logout(){
-
+            
             unset($_SESSION['Id']);
+            session_destroy();
 
             header('location:' . URLROOT . '/users/index');
 
@@ -54,7 +59,83 @@
 
         }
 
+    public function ViewUsers()
+    {
+    
+
+        $this->db->query("SELECT * FROM users");
+        $result = $this->db->resultSet();
+        return $result;
+      
+    }
+
+    public function ViewAdmins()
+    {
+    
+
+        $this->db->query("SELECT * FROM users WHERE User_Type = 'Admin'");
+        $result = $this->db->resultSet();
+        return $result;
+      
+    }
+    
+    public function DeleteAdmin($id)
+    {
+    
+      // require_once  APPROOT . '/views/includes/admin_panel_admins.php';
+     
+        $this->db->query('DELETE FROM users WHERE Id = :id');
+        $this->db->bind(':id' , $id);
+        if($this->db->execute())
+        return true;
+        else
+        return false;
         
+      
+    }
+
+    public function AddAdmin($data)
+    {
+    
+      // require_once  APPROOT . '/views/includes/admin_panel_admins.php';
+     
+      $this->db->query('INSERT INTO users (First_Name, Last_Name, Brand_Name, User_Email, User_Password, User_Number, User_Type) 
+      VALUES (:Fname, :Lname, :Bname, :Uemail, :Upassword, :Unumber, :Utype)');
+      $this->db->bind(':Fname',$data['Fname']);
+      $this->db->bind(':Lname',$data['Lname']);
+      $this->db->bind(':Bname','');
+      $this->db->bind(':Uemail',$data['Email']);
+      $this->db->bind(':Upassword',$data['Password']);
+      $this->db->bind(':Unumber','');
+      $this->db->bind(':Utype','Admin');
+     
+
+      if ($this->db->execute()) {
+          return true;
+      } else {
+          return false;
+      }
+        
+      
+    }
+
+
+
+
+    public function findUserById($id) {
+        //Prepared statement
+        $this->db->query('SELECT * FROM users WHERE Id = :id');
+
+        //Email param will be binded with the email variable
+        $this->db->bind(':id', $id);
+
+        //Check if email is already registered
+        if($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } 
 
      
 
@@ -75,21 +156,19 @@
 
         
     }
+    public function UpdatePasswordinDB($data)
+    {
+      $this->db->query('UPDATE users SET User_Password =:Pass  WHERE Id=:Id');
+      $this->db->bind(":Pass",$data['Password']);
+      $this->db->bind(":Id",$data['Id']);
+      $this->db->execute();
 
-    public function findUserById($id) {
-        //Prepared statement
-        $this->db->query('SELECT * FROM users WHERE Id = :id');
 
-        //Email param will be binded with the email variable
-        $this->db->bind(':id', $id);
 
-        //Check if email is already registered
-        if($this->db->rowCount() > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }  
+    }
+    
+
+     
 
 
         public function findUserByEmail($email) {
@@ -98,9 +177,7 @@
     
             //Email param will be binded with the email variable
             $this->db->bind(':email', $email);
-
            $this->db->single();
-
             //Check if email is already registered
             if($this->db->rowCount() > 0) {
                 return true;
@@ -108,7 +185,6 @@
                 return false;
             }
         }    
-
 
         public function delete($id)
         {
@@ -120,6 +196,5 @@
 
 
         }
-
 
     }
