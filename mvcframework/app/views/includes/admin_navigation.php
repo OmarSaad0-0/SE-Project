@@ -12,10 +12,10 @@ echo "Hello, " .$_SESSION['First_Name'];
         
         <?php endif; ?>
 
-<br><br><a href="<?php echo URLROOT ?>/users/admin_panel_admins">Admins</a>
-<a href="<?php echo URLROOT ?>/users/admin_panel_users">Users</a>
-<a href="<?php echo URLROOT ?>/users/Admin_OrdersAction">Orders</a>
-<a href="#">Products</a>
+<br><br><a href="http://localhost/mvcframework/users/admin_panel_admins">Admins</a>
+<a href="http://localhost/mvcframework/users/admin_panel_users">Users</a>
+<a href="#">Orders</a>
+<a href="http://localhost/mvcframework/products/index">Products</a>
 </nav>
 <br>
 </html>
