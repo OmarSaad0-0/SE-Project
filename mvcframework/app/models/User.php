@@ -59,6 +59,11 @@
 
         }
 
+    public function ShowOrders(){
+            $this->db->query("SELECT orders.Id, users.Brand_Name AS Ordered_By,orders.base_product,orders.Fabric,orders.Colour,printing.Type AS printing_Type ,orders.Quantity,orders.additionalInfo,orders.deliveryTime,orders.Order_date,orders.Order_status FROM orders INNER JOIN users ON Orders.Ordered_By=users.Id INNER JOIN printing ON orders.Printing=printing.Print_Id");
+            $result = $this->db->resultSet();
+            return $result;
+        }
     public function ViewUsers()
     {
     
@@ -78,7 +83,16 @@
         return $result;
       
     }
-    
+    public function UpdateOrder($id,$action){
+        $this->db->query('UPDATE orders SET Order_status= :action WHERE Id = :id');
+        $this->db->bind(':id',$id);
+        $this->db->bind(':action',$action);
+        if($this->db->execute())
+        return true;
+        else
+        return false;
+
+    }
     public function DeleteAdmin($id)
     {
     
