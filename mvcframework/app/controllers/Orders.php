@@ -17,18 +17,9 @@ class Orders extends Controller
 
 public function Enter()
 {
-    $data = [
-            
-        'Base' => '',
-        'Fabric' =>'' ,
-        'Colour' => '',
-        'Printing' =>'',
-        'Quantity' => '',
-        'Info' => '',
-        'Time' => '',
-        'Pr' => $this->orderModel->SelectPrint()
-        
-    ];
+    
+
+    $data = $this->orderModel->SelectPrint();
 
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // Process form

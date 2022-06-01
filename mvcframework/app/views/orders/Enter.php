@@ -10,12 +10,12 @@ Time<input type='text' name='Time'>
 
 <?php
 echo "<select>";
-foreach ($data['Pr'] as $a)
+foreach ($data as $a)
 {
-    foreach($a as $key => $value)
-    {
-        echo "<option selected='selected' value= '$value'> $value</option>";
-    }
+    
+    
+        echo "<option selected='selected' value= '$a->Type'> $a->Type</option>";
+    
     echo "<br>";
 }
    echo "</select>" ;
