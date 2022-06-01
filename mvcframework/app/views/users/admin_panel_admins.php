@@ -9,7 +9,7 @@
 </form>
 <?php
 
- echo "<table border=1 >
+ echo "<table  class='table table-striped table-hover table-bordered' >
  <th >id</th>
  <th>First Name</th>
  <th>Last Name</th>
@@ -32,7 +32,7 @@ else{
     echo "<tr ><td>".$user->Id."</td><td>".$user->First_Name."</td><td>".$user->Last_Name."</td><td>".$user->User_Email."</td><td>".$user->User_Type."</td>
     <td><form action ='http://localhost/mvcframework/users/admin_panel_delete_admins?action=remove&id=$user->Id' method = 'POST'>
     <input type = 'submit' name = 'del-button' value ='Delete'  ></input></td></tr>
-    </form>";
+    </form>" ;
 
 }
     
