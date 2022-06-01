@@ -255,7 +255,30 @@ public function admin_panel_admins(){
         $this->view('users/admin_panel_admins',$data);
         
         }    
+public function  Admin_OrdersAction(){
+    $data=$this->userModel->ShowOrders();
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+       
+     
+
+        
+        
+        if($this->userModel->UpdateOrder($_GET['id'],$_GET['action']))
+        {
+
+            header("Location: " . URLROOT. "/users/Admin_OrdersAction");
+
+        }
+        else{
+        die("Manga");
+        }
+          
+    }
+    
+    $this->view('users/Admin_OrdersAction',$data);
+
+}
 public function admin_panel_delete_admins()
 {
   
@@ -280,7 +303,10 @@ public function admin_panel_delete_admins()
     
     $this->view('users/admin_panel_admins');
 }
-
+/*public function ViewOrders(){
+    $data=$this->userModel->ShowOrders();
+    $this->view('users/Admin_OrdersAction',$data);
+}*/
 public function admin_panel_add_adminform(){
 
     $data = [
