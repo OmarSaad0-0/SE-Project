@@ -240,8 +240,7 @@ public function admin_panel_users(){
 public function admin_panel_landing(){
     
     
-        $data = [ 'Title' => 'Admin Dashboard'
-    ];
+        $data = [ 'Title' => 'Admin Dashboard'];
     
         $this->view('users/admin_panel_landing',$data);
     
@@ -279,6 +278,7 @@ public function  Admin_OrdersAction(){
     $this->view('users/Admin_OrdersAction',$data);
 
 }
+
 public function admin_panel_delete_admins()
 {
   
@@ -352,6 +352,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
     $this->view('users/admin_panel_add_adminform');
 }
+
+
 
 
 

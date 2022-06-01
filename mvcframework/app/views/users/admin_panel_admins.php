@@ -9,7 +9,7 @@
 </form>
 <?php
 
- echo "<table border=1 >
+ echo "<table  class='table table-striped table-hover table-bordered' >
  <th >id</th>
  <th>First Name</th>
  <th>Last Name</th>
