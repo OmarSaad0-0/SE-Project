@@ -18,243 +18,103 @@ public function index() {
 }
 
 
-public function admin_panel_products_men(){
+
+
+public function admin_panel_products(){
+    
+$data= $this->productModel->ViewProducts();
+                                                                        
+                                                                        
+                                                                        
+$this->view('products/admin_panel_products',$data);
+                                                                        
+                                                                        
+                                                                    
+}
+
+public function admin_panel_products_addform(){
         
-    $data = $this->productModel->ViewMen();
-                          
-                          
-                          
-    $this->view('products/admin_panel_products_men',$data);
-                          
-                          }  
 
-                          
+                  
+            
+    // Add product in database
+  $data = [];
+                  
+  $this->view('products/admin_panel_products_addform',$data);
+                  
+                  }
 
 
-public function admin_panel_products_men_add(){
+public function admin_panel_products_add(){
         
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
     $data = [
-         'Name' => $_POST['Product_Name']
-];
-    }
-          // Add product in database
-        if($this->productModel->AddMen($data)){
-            header('Location: http://localhost/mvcframework/products/admin_panel_products_men');
-        }
-        else 
-        return;
-                        
-        $this->view('products/admin_panel_products_men_addform',$data);
-                        
-                        } 
-
-
-
-    
-    public function admin_panel_products_unisex_add(){
-        
-
-        $data = [
-             'Name' => $_POST['Product_Name']
-    ];
-
-              // Add product in database
-            if($this->productModel->AddUnisex($data)){
-                header('Location: http://localhost/mvcframework/products/admin_panel_products_unisex');
-            }
-            else 
-            return;
-                            
-            $this->view('products/admin_panel_products_unisex_add',$data);
-                            
-                            }  
-
-    public function admin_panel_products_unisex_delete(){
-        
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                               
-     
-                        
-                                      // Add product in database
-     if($this->productModel->deleteUnisex($_GET['id'])){
-     header('Location: http://localhost/mvcframework/products/admin_panel_products_unisex');
-    }
-    
-    }
-    $this->view('products/admin_panel_products_unisex');
-                                                    
-    }
-
-    public function admin_panel_products_men_delete(){
-        
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                                   
-         
-                            
-                                          // Add product in database
-         if($this->productModel->deleteMen($_GET['id'])){
-         header('Location: http://localhost/mvcframework/products/admin_panel_products_men');
-        }
-        
-        }
-        $this->view('products/admin_panel_products_men');
-                                                        
-        }
-
-    public function admin_panel_products_unisex_edit(){
-         // To show the current Product Name in the Input Field
-         //$id = $_GET['id'];
-         // $data = $this->productModel->getProduct($id);
-         
-         $id = $_GET['id'];
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            'Name' => $_POST['name'],
+            'Type'=> $_POST['categories'],
+            'Image'=> $_POST['Image']
+      ];
             
-                                   
-            $data = [
+       // Add product in database
+        if($this->productModel->AddProduct($data)){
+            header('Location: http://localhost/mvcframework/products/admin_panel_products');
+                        }
+        else{
 
-                'productName' => $_POST['Product_Name'],
-                'Id' => $id
-    
-             ];
-                            
-                                          // Add product in database
-         if($this->productModel->updateUnisex($data)){
-         header('Location: http://localhost/mvcframework/products/admin_panel_products_unisex');
+            die("Manga");
         }
-        
-        }
-        $this->view('products/admin_panel_products_unisex_edit');
-                                                        
-        }
-
-        public function admin_panel_products_men_edit(){
-            // To show the current Product Name in the Input Field
-            //$id = $_GET['id'];
-            // $data = $this->productModel->getProduct($id);
-            
-            $id = $_GET['id'];
-           if($_SERVER['REQUEST_METHOD'] == 'POST'){
-               
-                                      
-               $data = [
-   
-                   'productName' => $_POST['Product_Name'],
-                   'Id' => $id
-       
-                ];
-                               
-                                             // Add product in database
-            if($this->productModel->updateMen($data)){
-            header('Location: http://localhost/mvcframework/products/admin_panel_products_men');
-           }
-           
-           }
-           $this->view('products/admin_panel_products_men_edit');
-                                                           
-           }
-
-
-
-    
-    
-                            
-
-                            public function admin_panel_products_unisex(){
-    
-        $data = $this->productModel->ViewUnisex();
-                
-                
-                
-                $this->view('products/admin_panel_products_unisex',$data);
-                
-                
-            
-    }  
-                public function admin_panel_products_unisex_addform(){
-        
-
-                  
-            
-                          // Add product in database
-                        $data = [];
+          
                                         
-                        $this->view('products/admin_panel_products_unisex_addform',$data);
+            $this->view('products/admin_panel_products',$data);
                                         
-                                        } 
+                                        }
 
-                                        public function admin_panel_products_men_addform(){
+ public function admin_panel_products_edit(){
         
 
-                  
+                  $data = $this->productModel->getProduct($_GET['id']);
             
-                                            // Add product in database
-                                          $data = [];
+      // Add product in database
+      $id = $_GET['id'];
+      if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          
+                                 
+          $data = [
+
+              'productName' => $_POST['Product_Name'],
+              'productImage' => $_POST['Image'],
+              'productCategory' => $_POST['categories'],
+
+              'Id' => $id
+  
+           ];
+                          
+                                        // Add product in database
+       if($this->productModel->updateProduct($data)){
+       header('Location: http://localhost/mvcframework/products/admin_panel_products');
+      }
+      
+      }
+      $this->view('products/admin_panel_products_edit',$data);
                                                           
-                                          $this->view('products/admin_panel_products_men_addform',$data);
+                                                          }       
                                                           
-                                                          }
-    public function admin_panel_products_women(){
-        
-        $data = $this->productModel->ViewWomen();
-                                        
-                                        
-                                        
-         $this->view('products/admin_panel_products_women',$data);
-                                        
-                                        } 
-
-                                        public function admin_panel_products_women_addform(){
-        
-
-                  
-            
-                                            // Add product in database
-                                          $data = [];
-                                                          
-                                          $this->view('products/admin_panel_products_women_addform',$data);
-                                                          
-                                                          }
-
-                                                          public function admin_panel_products_women_edit(){
-                                                            // To show the current Product Name in the Input Field
-                                                            //$id = $_GET['id'];
-                                                            // $data = $this->productModel->getProduct($id);
-                                                            
-                                                            $id = $_GET['id'];
-                                                           if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                                                               
-                                                                                      
-                                                               $data = [
-                                                   
-                                                                   'productName' => $_POST['Product_Name'],
-                                                                   'Id' => $id
-                                                       
-                                                                ];
-                                                                               
-                                                                                             // Add product in database
-                                                            if($this->productModel->updateWomen($data)){
-                                                            header('Location: http://localhost/mvcframework/products/admin_panel_products_women');
-                                                           }
-                                                           
-                                                           }
-                                                           $this->view('products/admin_panel_products_women_edit');
-                                                                                                           
-                                                           }
-
-                                                           public function admin_panel_products_women_delete(){
+                                                          public function admin_panel_products_delete(){
         
                                                             if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                                                                        
                                                              
                                                                                 
                                                                                               // Add product in database
-                                                             if($this->productModel->deleteWomen($_GET['id'])){
-                                                             header('Location: http://localhost/mvcframework/products/admin_panel_products_women');
+                                                             if($this->productModel->deleteProduct($_GET['id'])){
+                                                             header('Location: http://localhost/mvcframework/products/admin_panel_products');
                                                             }
                                                             
                                                             }
-                                                            $this->view('products/admin_panel_products_women');
+                                                            $this->view('products/admin_panel_products');
                                                                                                             
                                                             }
+
+
+
+
 }
