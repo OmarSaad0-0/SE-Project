@@ -29,6 +29,7 @@ class Orders extends Controller
 
 public function Enter()
 {
+
     $data = [
             
         'name'=>'',
@@ -49,6 +50,7 @@ public function Enter()
   
   if($_SERVER['REQUEST_METHOD'] == 'POST')
   {
+
     // Process form
     // Sanitize POST data
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);

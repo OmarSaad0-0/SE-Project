@@ -144,6 +144,7 @@
 
         <input type= "submit" class = "submit" >Submit</input>
 <?php
+
        $Name=$_GET['name']; 
        ?>
         <input type='hidden' name='Base' value='<?php echo $Name;?>'>
@@ -188,11 +189,11 @@ var_dump($data['Printing']);
 <?php
 echo "<select name= 'Printing'>";
 foreach ($data['Pr'] as $a)
-{
-    foreach($a as $key => $value)
-    {
-        echo "<option selected='selected' value= '$value'> $value</option>";
-    }
+
+    
+    
+        echo "<option selected='selected' value= '$a->Type'> $a->Type</option>";
+    
     echo "<br>";
 }
    echo "</select>" ;
