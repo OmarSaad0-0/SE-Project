@@ -22,7 +22,7 @@
           <a class="nav-link text-light" href="<?php echo URLROOT ?>/users/Admin_OrdersAction">Orders</a></li>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light">products</a>
+          <a  href = "<?php echo URLROOT ?>/products/admin_panel_products" class="nav-link text-light">Products</a>
         </li>
         <li class="nav-item">
         <?php if(isset($_SESSION['Id'])) :?>
