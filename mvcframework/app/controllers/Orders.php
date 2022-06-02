@@ -1,4 +1,5 @@
-<?php
+
+ <?php
 class Orders extends Controller
 {
 
@@ -12,45 +13,91 @@ class Orders extends Controller
 
  public function index()
  {
-    $this->view('orders/index');
+      
+    $data['Men'] = $this->orderModel->SelectMenProducts();
+        
+        
+    $data['Woman'] = $this->orderModel->SelectWomenProducts();
+
+    $data['Uni'] = $this->orderModel->SelectuniSexProducts();
+
+   
+
+    $this->view('orders/index',$data);
+ 
  }
 
 public function Enter()
 {
-    
 
-    $data = $this->orderModel->SelectPrint();
+    $data = [
+            
+        'name'=>'',
+        
+        'Fabric' =>'' ,
+        'Colour' => '',
+        'Printing' =>'',
+        'Quantity' => '',
+        'Info' => '',
+        'Time' => '',
+        'Pr' => $this->orderModel->SelectPrint(),
+        'FabricError' => '',
+        'ColourError' => '',
+        'TimeError'   => ''
+        
+        
+    ];
+  
+  if($_SERVER['REQUEST_METHOD'] == 'POST')
+  {
 
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // Process form
     // Sanitize POST data
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
 
-
     $data = [
             
-        'Base' => $_POST['Base'],
+        
         'Fabric' =>$_POST['Fabric'] ,
+        'Base' =>$_POST['Base'],
+        
+
         'Colour' => $_POST['Colour'],
         'Printing' => $_POST['Printing'],
         'Quantity' => $_POST['Quantity'],
         'Info' => $_POST['Info'],
         'Time' => $_POST['Time'],
-        'Pr' => $this->orderModel->SelectPrint()
+        'Pr' => $this->orderModel->SelectPrint(),
+        'FabricError' => ' ',
+        'ColourError' => ' ',
+        'TimeError'   => ' ',
+        'Status'      =>$_POST['status']
     ];
 
-    $_SESSION['Base']=$data['Base'];
-    $_SESSION['Fabric']=$data['Fabric'];
-    $_SESSION['Colour']=$data['Colour'];
-    $_SESSION['Printing']=$data['Printing'];
-    $_SESSION['Quantity']=$data['Quantity'];
-    $_SESSION['Info']=$data['Info'];
-    $_SESSION['Time']=$data['Time'];
+    if (empty($data['Fabric']))
+    {
+      $data['Fabric']='';
+    } 
 
-   $this->orderModel->InsOrder($data,$_SESSION['Id']);
+    if (empty($data['Colour']))
+    {
+       $data['Colour']='';
+    } 
+
+
+    if (empty($data['Time']))
+    {
+        $data['TimeError'] = 'Please Choose Required Time';
+    } 
+
 
   
+    
+
+   $this->orderModel->InsOrder($data,$_SESSION['Id']);
+    
+  header("Location:http://localhost/mvcframework/orders/Checkout");
 
 }
 
@@ -59,4 +106,10 @@ $this->view('orders/Enter',$data);
 
 }
 
+
+public function Checkout()
+{
+  $data=$this->orderModel-> get_Cart($_SESSION['Id']);
+  $this->view('orders/Checkout',$data);
+}
 }
