@@ -1,3 +1,4 @@
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,18 +19,18 @@
     <div class="row px-5">
         <div class="col-md-7">
             <div class="shopping-cart">
-                <h6>My Cart</h6>
+                <h6>My Orders</h6>
                 <hr>
  <?php
 
 
  foreach($data as $key)
  {
-    cartElement($key->Id,IMGROOT."Boxers.jpeg",$key->base_product, $key->Fabric, $key->Colour,$key->Printing,$key->Quantity,$key->additionalInfo,$key->deliveryTime);
+    cartElement($key->Id,IMGROOT.$key->Image,$key->base_product, $key->Fabric, $key->Colour,$key->Printing,$key->Quantity,$key->additionalInfo,$key->deliveryTime,$key->Order_status);
  }
 
 
-function cartElement($Id,$productimg,$Base, $Fabric,$colour, $printing,$Quantity,$info,$Time){
+function cartElement($Id,$productimg,$Base, $Fabric,$colour, $printing,$Quantity,$info,$Time,$Status){
     $element = "
     
     <form action=\"Cart.php?action=remove&id=$Id\" method=\"Post\" class=\"cart-items\">
@@ -44,7 +45,9 @@ function cartElement($Id,$productimg,$Base, $Fabric,$colour, $printing,$Quantity
                             <h6 class=\"text-secondary\"><i>Printing</i> : $printing</h6>
                             <h6 class=\"text-secondary\"><i>Quantity</i> : $Quantity</h6>
                             <h6 class=\"text-secondary\"><i>Comments</i> : $info</h6>
-                            <h6 class=\"text-secondary\">Time:$Time</h6>
+                            <h6 class=\"text-secondary\"><i>Comments</i> : $colour</h6>
+                            <h6 class=\"text-secondary\"><i>Time</i> : $Time</h6>
+                            <h6 class=\"text-secondary\"><i>Status</i> : $Status</h6>
 
                             </div>
                             
