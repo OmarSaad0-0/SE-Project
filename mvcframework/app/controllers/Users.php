@@ -4,6 +4,7 @@ class Users extends Controller {
     
     public function __construct() {
         $this->userModel = $this->model('User');
+        $this->orderModel = $this->model('Order');
     }
 
     public function register() {
@@ -132,7 +133,7 @@ class Users extends Controller {
         $this->view('users/register', $data);
     }
 
-/******************************************************* */
+
 public function login() {
     $data = [
         'title' => 'Login page',
@@ -238,13 +239,15 @@ public function admin_panel_users(){
 }
 
 public function admin_panel_landing(){
+
     
     
         $data = [ 'Title' => 'Admin Dashboard'];
     
         $this->view('users/admin_panel_landing',$data);
     
-    }
+}
+
 public function admin_panel_admins(){
     
     
@@ -253,9 +256,12 @@ public function admin_panel_admins(){
         
         $this->view('users/admin_panel_admins',$data);
         
-        }    
-public function  Admin_OrdersAction(){
-    $data=$this->userModel->ShowOrders();
+}    
+
+public function Admin_OrdersAction(){
+
+    $data=$this->userModel->ShowOrder();
+
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
        
@@ -279,8 +285,8 @@ public function  Admin_OrdersAction(){
 
 }
 
-public function admin_panel_delete_admins()
-{
+public function admin_panel_delete_admins(){
+
   
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -303,10 +309,7 @@ public function admin_panel_delete_admins()
     
     $this->view('users/admin_panel_admins');
 }
-/*public function ViewOrders(){
-    $data=$this->userModel->ShowOrders();
-    $this->view('users/Admin_OrdersAction',$data);
-}*/
+
 public function admin_panel_add_adminform(){
 
     $data = [
@@ -323,7 +326,7 @@ public function admin_panel_add_adminform(){
         'passwordError' => '',
     ];
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $data = [
             
@@ -346,21 +349,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         header("Location: " . URLROOT. "/users/admin_panel_admins");
 
     }else{
-        die("Manga");
+        die("Magdy");
 
         }
     }
     $this->view('users/admin_panel_add_adminform');
 }
-
-
-
-
-
-
-
-
-
 
 public function profile(){
 
@@ -427,32 +421,31 @@ public function profile(){
     }
 
 
-$this->view('users/profile',$data);
-
-
+    $this->view('users/profile',$data);
 }
 
 public function UpdatePassword(){
 
-$data =[
- 'title' =>'changepassword' ,
- 'Id' => '',
- 'Password'=> '',
- 'Confirmpass' => '',
- 'passwordError' => '',
- 'confirmPasswordError' => ''
-
-
-];
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING); 
     $data =[
         'title' =>'changepassword' ,
-        'Id' => $_SESSION['Id'],
-        'Password'=> $_POST['Password'],
-        'Confirmpass' =>$_POST['Confirmpass'],
+        'Id' => '',
+        'Password'=> '',
+        'Confirmpass' => '',
         'passwordError' => '',
         'confirmPasswordError' => ''
+
+
+    ];
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING); 
+        $data =[
+            'title' =>'changepassword' ,
+            'Id' => $_SESSION['Id'],
+            'Password'=> $_POST['Password'],
+            'Confirmpass' =>$_POST['Confirmpass'],
+            'passwordError' => '',
+            'confirmPasswordError' => ''
 
 
        ];
@@ -460,74 +453,63 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
        
 
        if (empty($data['Password'])) {
-        $data['passwordError'] = 'Please Enter Your Password.';
-    }
+            $data['passwordError'] = 'Please Enter Your Password.';
+        }
 
     if (empty($data['Confirmpass'])) {
-        $data['confirmPasswordError'] = 'Please Enter Your confirm Password.';
-    }
+            $data['confirmPasswordError'] = 'Please Enter Your confirm Password.';
+        }
     if (($data['Confirmpass'])!=($data['Password']) ) {
-        $data['confirmPasswordError'] = 'Unmatched Passwords.';
-    }
+            $data['confirmPasswordError'] = 'Unmatched Passwords.';
+        }
 
 
     if (empty($data['passwordError']) && empty($data['confirmPasswordError']))
-    {    
-        $data['Password'] = password_hash($data['Password'], PASSWORD_DEFAULT);
-        $this->userModel->UpdatePasswordinDB($data);
-        echo '<script>alert("Your password has changed successfully")</script>';
-        sleep(2);
-        header('location: ' . URLROOT . '/users/logout');
+        {    
+            $data['Password'] = password_hash($data['Password'], PASSWORD_DEFAULT);
+            $this->userModel->UpdatePasswordinDB($data);
+            echo '<script>alert("Your password has changed successfully")</script>';
+            sleep(2);
+            header('location: ' . URLROOT . '/users/logout');
        
+        }
+    
+    
     }
-    
-    
-}
-else{
-    $data = [
+    else{
+        $data =     [
         
-        'Id' => '',
-        'Password'=> '',
-        'Confirmpass' => '',
-        'passwordError' => '',
-        'confirmPasswordError' => ''
-    ];
+            'Id' => '',
+            'Password'=> '',
+            'Confirmpass' => '',
+            'passwordError' => '',
+            'confirmPasswordError' => ''
+        ];
+    }
+
+    $this->view('users/UpdatePassword', $data);
+
 }
 
-$this->view('users/UpdatePassword', $data);
 
-}
+public function delete(){
 
-
-
-
-
-
-
-
-    
-
-
-
-public function delete()
-{
     
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     
-    $this->userModel->delete($_SESSION['Id']);
+        $this->userModel->delete($_SESSION['Id']);
  
 
-    session_destroy();
+        session_destroy();
    
    
-    header('location:' . URLROOT . '/users/register');
+        header('location:' . URLROOT . '/users/register');
       
-    
+    }
 
+    $this->view('users/profile',$data);
 
-}
-$this->view('users/profile',$data);
 }
 
 }

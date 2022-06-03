@@ -1,4 +1,7 @@
 
+
+
+   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +26,7 @@
     
 
     <?php  
-require APPROOT . '/views/includes/Nheader.php';
+//require APPROOT . '/views/includes/Nheader.php';
 
 
 

@@ -18,15 +18,13 @@ public function index() {
 }
 
 
-
-
 public function admin_panel_products(){
     
-$data= $this->productModel->ViewProducts();
+    $data= $this->productModel->ViewProducts();
                                                                         
                                                                         
                                                                         
-$this->view('products/admin_panel_products',$data);
+    $this->view('products/admin_panel_products',$data);
                                                                         
                                                                         
                                                                     
@@ -42,8 +40,7 @@ public function admin_panel_products_addform(){
                   
   $this->view('products/admin_panel_products_addform',$data);
                   
-                  }
-
+}
 
 public function admin_panel_products_add(){
         
@@ -57,7 +54,7 @@ public function admin_panel_products_add(){
        // Add product in database
         if($this->productModel->AddProduct($data)){
             header('Location: http://localhost/mvcframework/products/admin_panel_products');
-                        }
+        }
         else{
 
             die("Manga");
@@ -66,18 +63,17 @@ public function admin_panel_products_add(){
                                         
             $this->view('products/admin_panel_products',$data);
                                         
-                                        }
+}
 
  public function admin_panel_products_edit(){
         
 
-                  $data = $this->productModel->getProduct($_GET['id']);
+        $data = $this->productModel->getProduct($_GET['id']);
             
       // Add product in database
       $id = $_GET['id'];
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
           
-                                 
           $data = [
 
               'productName' => $_POST['Product_Name'],
@@ -89,30 +85,30 @@ public function admin_panel_products_add(){
            ];
                           
                                         // Add product in database
-       if($this->productModel->updateProduct($data)){
-       header('Location: http://localhost/mvcframework/products/admin_panel_products');
-      }
+            if($this->productModel->updateProduct($data)){
+                header('Location: http://localhost/mvcframework/products/admin_panel_products');
+            }
       
       }
       $this->view('products/admin_panel_products_edit',$data);
                                                           
-                                                          }       
+}       
                                                           
-                                                          public function admin_panel_products_delete(){
+public function admin_panel_products_delete(){
         
-                                                            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                                                                        
                                                              
                                                                                 
                                                                                               // Add product in database
-                                                             if($this->productModel->deleteProduct($_GET['id'])){
-                                                             header('Location: http://localhost/mvcframework/products/admin_panel_products');
-                                                            }
+        if($this->productModel->deleteProduct($_GET['id'])){
+            header('Location: http://localhost/mvcframework/products/admin_panel_products');
+        }
                                                             
-                                                            }
-                                                            $this->view('products/admin_panel_products');
+    }
+    $this->view('products/admin_panel_products');
                                                                                                             
-                                                            }
+}
 
 
 

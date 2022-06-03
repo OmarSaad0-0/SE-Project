@@ -11,28 +11,28 @@ class Orders extends Controller
 
 
 
- public function index()
- {
+public function index()
+{
+
       
     $data['Men'] = $this->orderModel->SelectMenProducts();
-        
-        
+         
     $data['Woman'] = $this->orderModel->SelectWomenProducts();
 
     $data['Uni'] = $this->orderModel->SelectuniSexProducts();
 
-   
-
     $this->view('orders/index',$data);
  
- }
+}
 
-public function Enter()
+
+ public function Enter()
 {
+
     $data = [
             
-        'name'=>'',
-        'Fabric' =>'' ,
+        'name'=>'',  
+        'Fabric' =>'',
         'Colour' => '',
         'Printing' =>'',
         'Quantity' => '',
@@ -42,13 +42,11 @@ public function Enter()
         'FabricError' => '',
         'ColourError' => '',
         'TimeError'   => ''
-        
-        
     ];
   
   if($_SERVER['REQUEST_METHOD'] == 'POST')
   {
-    
+
     // Process form
     // Sanitize POST data
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -59,59 +57,42 @@ public function Enter()
         
         'Fabric' =>$_POST['Fabric'] ,
         'Base' =>$_POST['Base'],
-        
-
         'Colour' => $_POST['Colour'],
         'Printing' => $_POST['Printing'],
         'Quantity' => $_POST['Quantity'],
         'Info' => $_POST['Info'],
         'Time' => $_POST['Time'],
         'Pr' => $this->orderModel->SelectPrint(),
-        'FabricError' => ' ',
         'ColourError' => ' ',
-        'TimeError'   => ' ',
-        'Status'      =>$_POST['status']
+        'TimeError' => ' ',
+        'Status' => $_POST['status']
     ];
 
     if (empty($data['Fabric']))
     {
-      $data['Fabric']='';
+      $data['Fabric'] = '';
     } 
 
     if (empty($data['Colour']))
     {
-       $data['Colour']='';
+       $data['ColourError'] = 'Please enter a colour';
     } 
-
 
     if (empty($data['Time']))
     {
         $data['TimeError'] = 'Please Choose Required Time';
     } 
 
-
-
-    
-
    $this->orderModel->InsOrder($data,$_SESSION['Id']);
     
-  header("Location:http://localhost/mvcframework/orders/Checkout");
+  header(URLROOT. "/orders/Checkout");
+
+  }
+
+  $this->view('orders/Enter',$data);
 
 }
 
 
-$this->view('orders/Enter',$data);
 
-}
-
-public function Checkout()
-{
-  $this->view('orders/Checkout',$data);
-}
-
-public function myOrders()
-{
-  $data=$this->orderModel-> get_Cart($_SESSION['Id']);
-  $this->view('orders/myOrders',$data);
-}
 }

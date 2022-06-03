@@ -5,18 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   
-<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/ord.css">
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     />
-
-
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/order2.css">
-<?php  
-require APPROOT . '/views/includes/Nheader.php';
-?>
     <title>Drag and drop upload</title>
   </head>
   <body>
@@ -24,7 +18,7 @@ require APPROOT . '/views/includes/Nheader.php';
   <br>
   <br>
   <?php
- $temp= $data['name'];  
+ $temp= $data['name'];
  ?>
   <form action="http://localhost/mvcframework/orders/Enter?name=<?php echo $temp?>" method='POST'>
   <!--- section fabric starts -->
@@ -33,7 +27,7 @@ require APPROOT . '/views/includes/Nheader.php';
         <span class="step1">
           STEP 1 : FABRIC
         </span>  
-        <input type="text" class = "t" name='Fabric' placeholder='Enter Fabric Type'>
+        <input type="text" class = "t" name='Fabric'>
       </div>
       <div class="progress"></div>
     </div>
@@ -43,16 +37,20 @@ require APPROOT . '/views/includes/Nheader.php';
 <br>
 
 <!--- section uploud color starts -->
-<div class="drop-container">
+
+    <div class="drop-container">
       <div class="drop">
-        <span class="step1">
-          STEP 2 : Colour
-        </span>  
-        <input type="text" class = "t" name='Colour' placeholder='Enter Colour'>
+      <span class="step2">
+          STEP 2 : UPLOUD COLOR
+        </span> 
+        <i class="fa-solid fa-photo-film icon"></i>
+       <br>
+       
+        <label for="file-upload">Browse Files</label>
+        <input type="file" id="file-upload" class="file-input" name='Colour' />
       </div>
       <div class="progress"></div>
     </div>
-
 
     <!--- section uploud color ends -->
 <br>
@@ -63,7 +61,7 @@ require APPROOT . '/views/includes/Nheader.php';
 <div class="drop-container">
       <div class="drop">
       <span class="step2">
-        <b><b><i> STEP 3 : TYPE OF PRINTING </i></b></b>
+        <b><b><i> STEP 4 : TYPE OF PRINTING </i></b></b>
         <br>
         </span> 
         <?php
@@ -71,11 +69,10 @@ require APPROOT . '/views/includes/Nheader.php';
        {
   
          ?>
-     
-        <label1 class="checkbox-inline">
-        <input type="checkbox" class = "checkppp" name='Printing' value="<?php echo $type->Type;?>">  <?php echo $type->Type;?>
+        <label1>
+            <input type="checkbox" value='<?php echo $type->Type;?>' class = "checkp" name='Printing'> 
+              <?php echo $type->Type;?> 
         </label1>
-        <br>
   
         <?php
        }
@@ -83,9 +80,6 @@ require APPROOT . '/views/includes/Nheader.php';
       </div>
       <div class="progress"></div>
 </div>
-<br>
-<br>
-    
 <!-- sectiion type of printing ends -->
 
 <!-- sectiion Quantity starts -->
@@ -111,8 +105,7 @@ require APPROOT . '/views/includes/Nheader.php';
     </div>
 
     <!-- sectiion Quantity ends -->
-<br>
-<br>
+
 <!-- sectiion things starts -->
 
     <div class="drop-container">
@@ -127,29 +120,21 @@ require APPROOT . '/views/includes/Nheader.php';
 <!-- sectiion Quantity ends -->
 
 <!-- sectiion Time starts -->
-<br>
-<br>
+
 
     <div class="drop-container">
       <div class="drop">
       <span class="step2">
           STEP 7 : Deleivery Time
         </span> 
-        <label1 class="checkbox-inline">
+        <label1>
             <input type="checkbox" value='Asap' class = "checkpp" name='Time'> 
-            ASAP
-          
+          ASAP
         </label1>
   
-        <label1 class="checkbox-inline">
-            <input type="checkbox" value='Flexable' name='Time' class = "checkpp"> 
+        <label1>
+            <input type="checkbox" value='Flexable' class = "checkpp"> 
           FLEXABLE
-        </label1>
-
-
-        <label1 class="checkbox-inline">
-            <input type="checkbox" value='Not Sure' name='Time' class = "checkpp"> 
-          NOT SURE
         </label1>
 
       </div>
@@ -157,9 +142,9 @@ require APPROOT . '/views/includes/Nheader.php';
 </div>
 <!-- sectiion Time ends -->
 
-        <input type= "submit" class = "submit" ></input>
-        <a href="http://localhost/mvcframework/orders/Cart">Add to Cart</a>
+        <input type= "submit" class = "submit" >Submit</input>
 <?php
+
        $Name=$_GET['name']; 
        ?>
         <input type='hidden' name='Base' value='<?php echo $Name;?>'>
@@ -187,9 +172,6 @@ for (var i = 0; i < checks.length; i++)
  var checkedChecks = document.querySelectorAll(".checkpp:checked");
  if (checkedChecks.length >= max + 1)
    return false;
-
-
-   
 }
     </script>
 
@@ -207,11 +189,11 @@ var_dump($data['Printing']);
 <?php
 echo "<select name= 'Printing'>";
 foreach ($data['Pr'] as $a)
-{
-    foreach($a as $key => $value)
-    {
-        echo "<option selected='selected' value= '$value'> $value</option>";
-    }
+
+    
+    
+        echo "<option selected='selected' value= '$a->Type'> $a->Type</option>";
+    
     echo "<br>";
 }
    echo "</select>" ;
