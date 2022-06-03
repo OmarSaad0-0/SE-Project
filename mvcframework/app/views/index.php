@@ -27,7 +27,7 @@ require APPROOT . '/views/includes/navigation.php';
         <h3>Clothes Mean <span>Nothing</span> Until Someone Lives in Them</h3>
 
         
-        <a href="<?php echo URLROOT; ?>/Pages/Select" class="btn">Get Started</a>
+        
 
     </div>
 
