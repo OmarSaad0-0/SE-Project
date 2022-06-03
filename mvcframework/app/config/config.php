@@ -4,7 +4,7 @@
     define('DB_USER', 'root'); // Add your DB root
     define('DB_PASS', ''); //Add your DB pass
     define('DB_NAME', 'namera'); //Add your DB Name
-
+    define('IMGROOT', 'http://localhost/mvcframework/public/img');
     //APPROOT
     define('APPROOT', dirname(dirname(__FILE__)));
 
