@@ -16,45 +16,35 @@
 
 </head>
 <body>
-    
+    session_start();
 <!-- header section starts  -->
 
 <header class="header">
 
-    <a href="#" class="logo"> <i class="fas fa-shopping-bag"></i> Namera </a>
+    <a href="#" class="logo"></i> Namera </a>
 
     <nav class="navbar">
+         <a href="<?php echo URLROOT?>">Home</a></li>
+                 <?php if(!isset($_SESSION['Id'])) :?>
 
-        <a href="<?php echo URLROOT; ?>">home</a>
-
-     
-        <a href="#review">about us</a>
-
-        <?php if(!isset($_SESSION['Id'])) :?>
-
-<a href="http://localhost/mvcframework/users/login">Login </a>
-<a href="http://localhost/mvcframework/users/register">Register </a>
-<?php endif; ?>
+                 <a href="<?php echo URLROOT; ?>/users/login">LOGIN</a>
+                 <a href="<?php echo URLROOT; ?>/users/Register">REGISTER</a>
 
 
-
-
+                 <?php endif; ?>
 <?php if(isset($_SESSION['Id'])) :?>
-        <a href="<?php echo URLROOT; ?>/users/logout">Logout</a>
-        <a href="<?php echo URLROOT; ?>/users/profile">My Profile</a>
 
-        <a href="<?php echo URLROOT; ?>/Pages/Select">Get Started!</a>
-
-
-
-        <?php endif; ?>
+ <a href="<?php echo URLROOT; ?>/users/logout">LOGOUT</a>
+                 <a href="<?php echo URLROOT; ?>/users/profile">Profile</a>
+                 <a href="<?php echo URLROOT; ?>/orders/myOrders">MyOrders</a>
+                 <a href="<?php echo URLROOT; ?>/orders">Start an Order</a>
+              </ul>
+              <?php endif; ?>
         
     </nav>
   
 
-
     
-
 
     <form action="" class="search-form">
         <input type="search" id="search-box" placeholder="search here...">
@@ -108,6 +98,4 @@
 
 <!-- custom js file link  -->
 <script src="http://localhost/MVCFRAMEWORK/public/Js/script.js"></script>
-
 </body>
-
