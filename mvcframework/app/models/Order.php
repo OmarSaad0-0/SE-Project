@@ -74,7 +74,7 @@ public function SelectuniSexProducts()
 
 public function get_Cart($Id)
 {
-    $this->db->query('SELECT * from orders WHERE Ordered_By=:id');
+    $this->db->query('SELECT orders.Id,orders.Ordered_By,  products.Image,orders.base_product,orders.Fabric,orders.Colour,orders.Printing,orders.Quantity,orders.additionalInfo,orders.deliveryTime,orders.Order_date,orders.Order_status from orders  INNER JOIN products ON orders.base_product=products.Name WHERE Ordered_By=:id');
     $this->db->bind(":id",$Id);
    $result= $this->db->resultset();
    return $result;

@@ -29,11 +29,9 @@ class Orders extends Controller
 
 public function Enter()
 {
-
     $data = [
             
         'name'=>'',
-        
         'Fabric' =>'' ,
         'Colour' => '',
         'Printing' =>'',
@@ -50,7 +48,7 @@ public function Enter()
   
   if($_SERVER['REQUEST_METHOD'] == 'POST')
   {
-
+    
     // Process form
     // Sanitize POST data
     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -92,7 +90,7 @@ public function Enter()
     } 
 
 
-  
+
     
 
    $this->orderModel->InsOrder($data,$_SESSION['Id']);
@@ -106,10 +104,14 @@ $this->view('orders/Enter',$data);
 
 }
 
-
 public function Checkout()
 {
-  $data=$this->orderModel-> get_Cart($_SESSION['Id']);
   $this->view('orders/Checkout',$data);
+}
+
+public function myOrders()
+{
+  $data=$this->orderModel-> get_Cart($_SESSION['Id']);
+  $this->view('orders/myOrders',$data);
 }
 }
