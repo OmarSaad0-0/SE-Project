@@ -95,7 +95,7 @@ public function Enter()
 
    $this->orderModel->InsOrder($data,$_SESSION['Id']);
     
-  header("Location:http://localhost/mvcframework/orders/Checkout");
+  header("Location:http://localhost/mvcframework/orders/myOrders");
 
 }
 

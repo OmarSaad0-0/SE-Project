@@ -10,6 +10,6 @@
 
     //URLROOT (Dynamic links)
     define('URLROOT', 'http://localhost/mvcframework');
-
+    define('IMGROOT','http://localhost/mvcframework/public/img/');
     //Sitename
-    define('SITENAME', 'MVC Framework');
+    define('SITENAME', 'Namera');

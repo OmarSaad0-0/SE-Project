@@ -4,6 +4,10 @@
   <title>Css Navbar</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+<!-- font awesome cdn link  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="http://localhost/MVCFRAMEWORK/public/css/Nheader.css">
 </head>
 <body>
@@ -22,8 +26,6 @@
            <nav class="nav">
               <ul>
                  <li><a href="<?php echo URLROOT?>">Home</a></li>
-                 <li><a href="#">about us</a></li>
-                 <li><a href="<?php echo URLROOT; ?>/orders/Checkout">Cart</a></li>
                  <?php if(!isset($_SESSION['Id'])) :?>
 
                  <li><a href="<?php echo URLROOT; ?>/users/login">LOGIN</a></li>
@@ -36,7 +38,7 @@
  <li><a href="<?php echo URLROOT; ?>/users/logout">LOGOUT</a></li>
                  <li><a href="<?php echo URLROOT; ?>/users/profile">Profile</a></li>
                  <li><a href="<?php echo URLROOT; ?>/orders/myOrders">MyOrders</a></li>
-                 <li><a href="<?php echo URLROOT; ?>/orders">Project</a></li>
+                 <li><a href="<?php echo URLROOT; ?>/orders">Start an Order</a></li>
               </ul>
               <?php endif; ?>
            </nav>

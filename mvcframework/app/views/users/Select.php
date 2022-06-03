@@ -38,9 +38,9 @@ require APPROOT . '/views/includes/navigation.php';
 
         <div class="box">
             <img src="<?php echo URLROOT; ?>/public/img/Hoodies.jpeg" alt="">
-            <h3>Hoodies</h3>
+            <h3>Hood</h3>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
-            <a href="<?php echo URLROOT; ?>/Pages/hoodie" class="btn">Lets Go!</a>
+            <a href="<?php echo URLROOT; ?>/Pages/choose" class="btn">Lets Go!</a>
         </div>
 
         <div class="box">

@@ -1,4 +1,3 @@
-
 <?php
 class Pages extends Controller {
     public function __construct() {
@@ -72,4 +71,12 @@ class Pages extends Controller {
         $this->view('users/hood',$data);
     }
 
+
+    public function choose(){
+        $data = [
+            'title' => 'Home page'
+        ];
+
+        $this->view('users/choose',$data);
+    }
 }

@@ -12,12 +12,12 @@ require APPROOT . '/views/includes/navigation.php';
 <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
 <!-- font awesome cdn link  -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css%22%3E
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css%22%3E">
 
 
 <!-- custom css file link  -->
 
-<link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/profile.css">
+<link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/updatepass.css">
 </div>
 </head>
 <br>
@@ -38,23 +38,34 @@ require APPROOT . '/views/includes/navigation.php';
     <div class="card1">
 
 
-        <form action="<?php echo URLROOT; ?>/users/UpdatePassword" id="register-form" method ="POST" class="login-form">
-        <h2>Change Password <h2>
+        
+    <form action="<?php echo URLROOT; ?>/users/UpdatePassword" id="register-form" method ="POST" class="login-form">
+    <br>
+    <br>
+    <h2>Change Password <h2>
+            <br>
+            <br>
             <div class ="form-control">
-        <input type="password" placeholder="new password" name="Password" id = "Password" class="form-control" >
+        <input type="password" placeholder="new password" name="Password" id = "Password" class="password" >
 
             <span class="invalidFeedback">
                 <?php echo $data['passwordError']; ?>
             </span>
             </div>
+
+            <br>
+            <br>
             <div class ="form-control">
-            <input type="password" placeholder="confirm new password" name="Confirmpass" id ="Confirmpass"  class="form-control" >
+            <input type="password" placeholder="confirm new password" name="Confirmpass" id ="Confirmpass"  class="cpassword" >
             <span class="invalidFeedback">
                 <?php echo $data['confirmPasswordError']; ?>
             </span>
             </div>
 
-            <input type="submit" value="Save" class="btn">
+            <br>
+            <br>
+            <button type = "submit" value="Save" class = "log" href = "#" >save</button>
+
 
 
         </form>

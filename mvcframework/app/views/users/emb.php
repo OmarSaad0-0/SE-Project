@@ -32,9 +32,7 @@
 
 
         <div class="box">
-
-            <img src="<?php echo URLROOT; ?>/public/img/out .jpeg" alt="">
-
+            <img src="<?php echo URLROOT; ?>/public/img/out.jpeg" alt="">
             <h3>Out</h3>
             <label><input type="checkbox" class="checke" /> </label>
             

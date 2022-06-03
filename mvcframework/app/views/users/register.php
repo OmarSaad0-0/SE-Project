@@ -9,14 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Namera</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <!-- custom css file link  -->
-
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/sign up.css">
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/registerr.css">
 
     
 </head>
@@ -27,64 +20,122 @@
     <br>
     <br>
 
+
+    
 <div id="container">
     <div class="card1">
         
 
-            <form
-                id="register-form"
-                method="POST"
-                action="<?php echo URLROOT; ?>/users/register"
-                class="login-form"
-                >
-                <h2>Register</h2>
-
-            <input type="Fname" placeholder="Firstname" name ="Fname" class="box" ><br>
-            <div class="invalidFeedback">
+    <form action="<?php echo URLROOT; ?>/users/register" id="register-form" method="POST" class="login-form">
+        
+        <h1>Sign Up</h1>
+            <p> See your growth and get consulting support! </p>
+            <br>
+            <div class ="form-group">
+            <input type="Fname" placeholder="Firstname" name ="Fname" class = "Fname" placeholder="first name" ><br>
+            <span class="invalidFeedback">
                 <?php echo $data['FnameError']; ?>
-</div>
+           </span>
+           </div>
 
-
-            <input type="Lname" placeholder="last name" name= "Lname"class="box" ><br>
-            <div class="invalidFeedback">
+            <br>
+           
+             <div class ="form-control">
+            <input type="Lname" placeholder="last name" name= "Lname"class="Lname" ><br>
+            <span class="invalidFeedback">
                 <?php echo $data['LnameError']; ?>
-                <div>
-
-
-
-                <input type="Company" placeholder="your company name" name="Bname" class="box" ><br>
-            <div class="invalidFeedback">
+</span>
+</div>
+        
+            <br>
+            <div class ="form-control">
+                <input type="Company" placeholder="your company name" name="Bname" class="company" ><br>
+                <span class="invalidFeedback">
                 <?php echo $data['BnameError']; ?>
+</span>
 </div>
 
-
-                <input type="int" placeholder="Phonenumber" name="Number" class="box" ><br>
-            <div class="invalidFeedback">
+ <br>
+ <div class ="form-control">
+                <input type="int" placeholder="Phonenumber" name="Number" class="Phone" ><br>
+            <span class="invalidFeedback">
                 <?php echo $data['numberError']; ?>
+</span>
 </div>
-
-                <input type="text" placeholder="your email" name= "Email" class="box" ><br>
-            <div class="invalidFeedback">
+<br>
+<div class ="form-control">
+                <input type="text" placeholder="your email" name= "Email" class="Email" ><br>
+            <span class="invalidFeedback">
                 <?php echo $data['emailError']; ?>
-            </div>
-
-            <input type="password" placeholder="your password" name= "Password"  class="box"><br>
-            <div class="invalidFeedback">
+</span>
+</div>
+<br>
+<div class ="form-control">
+            <input type="password" placeholder="your password" name= "Password"  class="Password"><br>
+            <span class="invalidFeedback">
                 <?php echo $data['passwordError']; ?>
-            </div>
-
-            <input type="password" placeholder="confirm password" name= "Cpassword"  class="box" ><br>
-            <div class="invalidFeedback">
+</span>
+</div>
+<br>
+            
+            <div class ="form-control">
+            <input type="password" placeholder="confirm password" name= "Cpassword"  class="CPassword" ><br>
+            <span class="invalidFeedback">
                 <?php echo $data['passwordError'];
                 echo $data['confirmPasswordError'] ?>
-            </div>
+        </span>    
+        </div>
 
+<br>
 
-            <p>Forget your password <a href="#">click here</a></p>
+<br>
+ <p>Forget your password <a href="#">click here</a></p>
                 <p>Already Have an Account? <a href="<?php echo URLROOT; ?>/users/login">Login</a></p>
-                <input type="submit" value="sign Up" class="btn">
-           
+
+                <br>
+                <br>
+                <button type = "submit" class = "signupbuttom" href = "#" >Register</button>
+
+
+            
         </form>
-    </div>
 </div>
+
+
+<div class = "card2">
+    <div class = "slides">
+        <!---- Radio buttons start-->
+      <input type = "radio" name = "radio-btn" id = "radio1">
+      <input type = "radio" name = "radio-btn" id = "radio2">
+      <input type = "radio" name = "radio-btn" id = "radio3">
+        <!---Radio buttons end-->
+        <!--Slide image start-->
+           <div class="box first"><img src= "/mvcframework/public/img/img1.jpg" alt="a balloon"></div>
+           <div class="box "><img src="/mvcframework/public/img/img3.jpg" alt="a balloon"></div>
+           <div class="box "><img src="/mvcframework/public/img/ATHLETIC WEAR.jpg" alt="a balloon"></div>
+        <!--Slide image end-->
+
+        <!--- Manual navigation start-->
+        <div class = "navigation-manual">
+            <label for="radio1" class = "manual-btn"></label> 
+            <label for="radio2" class = "manual-btn"></label> 
+            <label for="radio3" class = "manual-btn"></label> 
+
+        </div>
+       <!--- Manual navigation end-->
+
+
+
+     
+        
+    </div>
+   
+   </div>
+
+</div>
+
+
+
+
+
 
