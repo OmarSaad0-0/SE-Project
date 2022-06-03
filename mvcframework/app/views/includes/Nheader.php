@@ -23,7 +23,7 @@
               <ul>
                  <li><a href="<?php echo URLROOT?>">Home</a></li>
                  <li><a href="#">about us</a></li>
-                 <li><a href="<?php echo URLROOT; ?>/orders/Checkout">Cart</a></li>
+                 
                  <?php if(!isset($_SESSION['Id'])) :?>
 
                  <li><a href="<?php echo URLROOT; ?>/users/login">LOGIN</a></li>
