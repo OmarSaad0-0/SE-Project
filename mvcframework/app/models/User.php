@@ -60,7 +60,7 @@
         }
 
     public function ShowOrders(){
-            $this->db->query("SELECT orders.Id, users.First_Name AS Ordered_By,products.Name AS base_product,orders.Fabric,orders.Colour,printing.Type AS printing_Type ,orders.Quantity,orders.additionalInfo,orders.deliveryTime,orders.Order_date,orders.Order_status FROM orders INNER JOIN users ON Orders.Ordered_By=users.Id INNER JOIN printing ON orders.Printing=printing.Print_Id INNER JOIN products ON  orders.base_product=products.ID");
+           $this->db->query("SELECT orders.Id, users.First_Name AS Ordered_By,orders.base_product,orders.Fabric,orders.Colour,orders.Printing ,orders.Quantity,orders.additionalInfo,orders.deliveryTime,orders.Order_date,orders.Order_status FROM orders INNER JOIN users ON Orders.Ordered_By=users.Id");
             $result = $this->db->resultSet();
             return $result;
         }
