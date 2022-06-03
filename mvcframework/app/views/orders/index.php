@@ -19,7 +19,7 @@
 
 
     <!-- custom css file link  -->
-    <link rel="stylesheet" href="http://localhost/MVCFRAMEWORK/public/css/bngrb.css">
+    <link rel="stylesheet" href="http://localhost/MVCFRAMEWORK/public/css/orders.css">
     
 
     <?php  
@@ -35,11 +35,7 @@ require APPROOT . '/views/includes/Nheader.php';
 
 
  <?php
-
-
-
-
-/*function selectTop($productimg, $productname,$productParag){
+function selectTop($productimg, $productname,$productParag){
 
 
 $element = "
@@ -67,8 +63,8 @@ $element = "
 
     ";
     echo $element;
-    }*/
-   
+    }
+   echo selectTop(IMGROOT."Bucket.jpeg","dfefccr","hdsgvefuiwvcgfvy7");
   
   
 ?>
@@ -95,16 +91,18 @@ function showProducts($productimg, $productname)
 
 $element = "
 <div class=\"col-md-3 col-sm-6 my-3 my-md-0\"> 
-<form action=\"\" method=\"\">
+<form action=\"sizing.php\" method=\"POST\">
 <section class=\"Printing\" id=\"Printing\">
 
 
     <div class=\"box-container\">
 
-        <div class=\"box\" style=\"background: url($productimg);\">
+        <div class=\"box\">
+        <img src = \"$productimg\" alt = \"image here\">
+
             <br>
-           
-            <a href=\"http://localhost/mvcframework/orders/Enter?name=$productname\" class=\"btn\"  >Start</a>
+            <h3> $productname</h3>
+            <a href=\"http://localhost/mvcframework/orders/Enter?name=$productname\" class=\"btn\"  >Start</a> 
             </div>
             </div>
    </div>

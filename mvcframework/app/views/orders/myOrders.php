@@ -13,26 +13,42 @@
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/cart.css">
+    <link rel="stylesheet" href="<?php echo URLROOT ?>/public/css/cartt.css">
 
 <div class="container-fluid">
     <div class="row px-5">
         <div class="col-md-7">
             <div class="shopping-cart">
-                <h6>My Orders</h6>
+                <h3>My Orders</h3>
                 <hr>
  <?php
+require APPROOT . '/views/includes/navigation.php';
+?>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h3> My orders </h3>
+<?php
+
 
 
  foreach($data as $key)
  {
-    cartElement($key->Id,IMGROOT.$key->Image,$key->base_product, $key->Fabric, $key->Colour,$key->Printing,$key->Quantity,$key->additionalInfo,$key->deliveryTime,$key->Order_status);
+?>
+<br>
+<br>
+<?php
+
+   
+    cartElement($key->Id,IMGROOT."Bucket.jpeg",$key->base_product, $key->Fabric, $key->Colour,$key->Printing,$key->Quantity,$key->additionalInfo,$key->deliveryTime,$key->Order_status);
  }
 
 
 function cartElement($Id,$productimg,$Base, $Fabric,$colour, $printing,$Quantity,$info,$Time,$Status){
     $element = "
-    
+
     <form action=\"Cart.php?action=remove&id=$Id\" method=\"Post\" class=\"cart-items\">
                     <div class=\"border rounded\">
                         <div class=\"row bg-white\">
